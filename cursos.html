@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - ZATU Escuela de Belleza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #7C6FFF;
+            --secondary-purple: #5847D9;
+            --dark-bg: #0D0B1E;
+            --dark-card: #1A1633;
+            --white: #FFFFFF;
+            --light-purple: #9B8AFB;
+            --lighter-purple: #C4B8FF;
+            --accent-purple: #6554E0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(13, 11, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(107, 79, 224, 0.2);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: contain;
+            border: 3px solid transparent;
+            background:
+                linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, var(--primary-purple), var(--secondary-purple)) border-box;
+            box-shadow:
+                0 0 20px rgba(124, 111, 255, 0.6),
+                0 0 40px rgba(88, 71, 217, 0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 20px rgba(124, 111, 255, 0.6),
+                    0 0 40px rgba(88, 71, 217, 0.4);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 30px rgba(124, 111, 255, 0.8),
+                    0 0 60px rgba(88, 71, 217, 0.6);
+            }
+        }
+
+        .sparkle {
+            color: var(--light-purple);
+            font-size: 1.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            margin: 3px 0;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .cta-button {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(88, 71, 217, 0.4);
+        }
+
+        /* Hero Section */
+        .courses-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0D0B1E 0%, #1A1040 50%, #2D1B69 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .courses-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 111, 255, 0.3) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, 30px) scale(1.1);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .courses-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(107, 79, 224, 0.2);
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-purple);
+            box-shadow: 0 20px 40px rgba(124, 111, 255, 0.3);
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+        }
+
+        .course-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(124, 111, 255, 0.2), rgba(88, 71, 217, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--light-purple);
+            border-bottom: 1px solid rgba(107, 79, 224, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-image::before {
+            content: '📷 Espacio para imagen del curso';
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .course-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(124, 111, 255, 0.1), rgba(88, 71, 217, 0.1));
+            border-bottom: 1px solid rgba(107, 79, 224, 0.2);
+            text-align: center;
+        }
+
+        .course-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-purple);
+        }
+
+        .course-icon i {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .course-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-duration {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .course-body {
+            padding: 2rem;
+        }
+
+        .course-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .course-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-features li {
+            padding: 0.7rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid rgba(107, 79, 224, 0.1);
+        }
+
+        .course-features li:last-child {
+            border-bottom: none;
+        }
+
+        .course-features li::before {
+            content: '✨';
+            font-size: 1.2rem;
+        }
+
+        .course-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(107, 79, 224, 0.2);
+        }
+
+        .price-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+        }
+
+        .enroll-btn {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .enroll-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(124, 111, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-card);
+            border-top: 1px solid rgba(107, 79, 224, 0.2);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(13, 11, 30, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                border-left: 1px solid rgba(107, 79, 224, 0.3);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            nav .cta-button {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-card {
+                margin-bottom: 1.5rem;
+            }
+
+            .course-icon {
+                font-size: 2.5rem;
+            }
+
+            .course-title {
+                font-size: 1.5rem;
+            }
+
+            .course-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="imagenes/logo.png" alt="Zatu Logo" class="logo-image">
+            <span class="sparkle">✨</span>
+            Zatu
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        <a href="contacto.html" class="cta-button">Inscríbete</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="courses-hero">
+        <div class="hero-content">
+            <h1>
+                Nuestros <span class="gradient-text">Cursos</span><br>
+                Especializados
+            </h1>
+            <p class="hero-subtitle">
+                Formación profesional de calidad en el arte de la belleza
+            </p>
+        </div>
+    </section>
+
+    <!-- Courses Content -->
+    <section class="courses-content">
+        <h2 class="section-title">Explora Nuestros <span class="gradient-text">Programas</span></h2>
+
+        <div class="courses-grid">
+            <!-- Manicura -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/manicura.jpg" alt="Curso de Manicura"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-hand-sparkles"></i></div>
+                    <h3 class="course-title">Manicura</h3>
+                    <p class="course-duration">📅 Duración: 3 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Domina las técnicas de cuidado y embellecimiento de uñas, desde lo básico hasta diseños
+                        avanzados.
+                        Aprende a trabajar con gel, acrílico y las últimas tendencias en nail art.
+                    </p>
+                    <ul class="course-features">
+                        <li>Técnicas de manicure y pedicure profesional</li>
+                        <li>Diseño de uñas artísticas y decoración</li>
+                        <li>Aplicación de gel y acrílico</li>
+                        <li>Esmaltado permanente y semipermanente</li>
+                        <li>Cuidado de cutículas y masajes de manos</li>
+                        <li>Certificación profesional</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estilismo -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/estilismo.jpg" alt="Curso de Estilismo"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-cut"></i></div>
+                    <h3 class="course-title">Estilismo</h3>
+                    <p class="course-duration">📅 Duración: 4 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Aprende cortes, peinados y técnicas de coloración para convertirte en un estilista profesional.
+                        Domina las tendencias actuales y técnicas clásicas del mundo del cabello.
+                    </p>
+                    <ul class="course-features">
+                        <li>Cortes modernos y clásicos para todo tipo de cabello</li>
+                        <li>Técnicas avanzadas de coloración</li>
+                        <li>Peinados para eventos y ocasiones especiales</li>
+                        <li>Tratamientos capilares y alisados</li>
+                        <li>Mechas, rayitos y efectos de color</li>
+                        <li>Manejo profesional de herramientas</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barbería -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/barberia.jpg" alt="Curso de Barbería"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-scissors"></i></div>
+                    <h3 class="course-title">Barbería</h3>
+                    <p class="course-duration">📅 Duración: 3 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Especialízate en el arte de la barbería con técnicas tradicionales y contemporáneas.
+                        Aprende a crear estilos únicos y a dominar el afeitado clásico.
+                    </p>
+                    <ul class="course-features">
+                        <li>Cortes de cabello masculino clásicos y modernos</li>
+                        <li>Técnicas de afeitado con navaja</li>
+                        <li>Diseño y perfilado de barba y bigote</li>
+                        <li>Degradados y desvanecidos profesionales</li>
+                        <li>Atención al cliente y gestión de barbería</li>
+                        <li>Uso de máquinas y herramientas especializadas</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colorimetría -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/colorimetria.jpg" alt="Curso de Colorimetría"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-palette"></i></div>
+                    <h3 class="course-title">Colorimetría</h3>
+                    <p class="course-duration">📅 Duración: 2 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Domina la ciencia del color aplicada al cabello y descubre cómo crear tonalidades perfectas.
+                        Aprende a identificar subtonos y corregir coloraciones.
+                    </p>
+                    <ul class="course-features">
+                        <li>Teoría del color aplicada al cabello</li>
+                        <li>Técnicas profesionales de decoloración</li>
+                        <li>Balayage, mechas y efectos de luz</li>
+                        <li>Corrección de color y neutralización</li>
+                        <li>Tintes de fantasía y colores vibrantes</li>
+                        <li>Diagnóstico capilar para coloración</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cejas y Pestañas -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/cejas_pestanas.jpg" alt="Curso de Cejas y Pestañas"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-eye"></i></div>
+                    <h3 class="course-title">Cejas y Pestañas</h3>
+                    <p class="course-duration">📅 Duración: 2 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Aprende a diseñar y embellecer cejas y pestañas con las técnicas más modernas.
+                        Conviértete en especialista en microblading y extensiones de pestañas.
+                    </p>
+                    <ul class="course-features">
+                        <li>Diseño arquitectónico de cejas</li>
+                        <li>Microblading y técnicas de pigmentación</li>
+                        <li>Extensiones de pestañas clásicas y volumen</li>
+                        <li>Laminado y lifting de pestañas</li>
+                        <li>Tinte de cejas y pestañas</li>
+                        <li>Depilación y perfilado profesional</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estética Dermatológica -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/estetica_dermatologica.jpg" alt="Curso de Estética Dermatológica"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-star"></i></div>
+                    <h3 class="course-title">Estética Dermatológica</h3>
+                    <p class="course-duration">📅 Duración: 4 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Formación en cuidados faciales, tratamientos de piel y técnicas de estética avanzada.
+                        Aprende a realizar tratamientos profesionales para el cuidado integral del rostro.
+                    </p>
+                    <ul class="course-features">
+                        <li>Limpieza facial profunda y exfoliación</li>
+                        <li>Tratamientos antienvejecimiento</li>
+                        <li>Peelings químicos y enzimáticos</li>
+                        <li>Hidratación y nutrición facial</li>
+                        <li>Diagnóstico y análisis de piel</li>
+                        <li>Protocolos de tratamiento personalizados</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maquillaje Profesional -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/maquillaje.jpg" alt="Curso de Maquillaje Profesional"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <h3 class="course-title">Maquillaje Profesional</h3>
+                    <p class="course-duration">📅 Duración: 3 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Aprende las técnicas más modernas de maquillaje para todo tipo de eventos y ocasiones.
+                        Desde maquillaje social hasta efectos especiales y caracterización.
+                    </p>
+                    <ul class="course-features">
+                        <li>Maquillaje social, de novia y eventos</li>
+                        <li>Técnicas de contorneo y iluminación</li>
+                        <li>Maquillaje artístico y editorial</li>
+                        <li>Bases, corrección de color y acabados</li>
+                        <li>Maquillaje para fotografía y video</li>
+                        <li>Teoría del color y armonización</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidralips & Babylips -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/hidralips.jpg" alt="Curso de Hidralips & Babylips"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-heart"></i></div>
+                    <h3 class="course-title">Hidralips & Babylips</h3>
+                    <p class="course-duration">📅 Duración: 1.5 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Domina las técnicas de hidratación y embellecimiento de labios para resultados naturales y
+                        duraderos.
+                        Especialízate en los tratamientos más demandados del mercado.
+                    </p>
+                    <ul class="course-features">
+                        <li>Técnicas avanzadas de hidratación labial</li>
+                        <li>Pigmentación natural de labios</li>
+                        <li>Rejuvenecimiento y voluminización</li>
+                        <li>Protocolos de aplicación seguros</li>
+                        <li>Cuidados pre y post tratamiento</li>
+                        <li>Manejo de productos profesionales</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lashista Profesional -->
+            <div class="course-card">
+                <div class="course-image">
+                    <!-- Aqui se puede reemplazar con: <img src="imagenes/lashista.jpg" alt="Curso de Lashista Profesional"> -->
+                </div>
+                <div class="course-header">
+                    <div class="course-icon"><i class="fas fa-eye-dropper"></i></div>
+                    <h3 class="course-title">Lashista Profesional</h3>
+                    <p class="course-duration">📅 Duración: 2 meses</p>
+                </div>
+                <div class="course-body">
+                    <p class="course-description">
+                        Conviértete en experto en extensiones de pestañas y técnicas de lifting y laminado.
+                        Aprende los métodos más actualizados para crear miradas impactantes.
+                    </p>
+                    <ul class="course-features">
+                        <li>Extensiones clásicas y volumen ruso</li>
+                        <li>Lifting y laminado de pestañas</li>
+                        <li>Técnicas de aplicación pelo a pelo</li>
+                        <li>Diseño personalizado según tipo de ojo</li>
+                        <li>Cuidados y mantenimiento profesional</li>
+                        <li>Higiene y bioseguridad en el trabajo</li>
+                    </ul>
+                    <div class="course-price">
+                        <span class="price-tag">Consultar precio</span>
+                        <a href="contacto.html" class="enroll-btn">Inscribirme</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <span class="sparkle">✨</span>
+            Zatu
+        </div>
+        <p style="opacity: 0.8; margin: 1rem 0;">Escuela de Belleza - Brilla con Propósito</p>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank" title="Facebook" style="color: var(--primary-purple);">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" title="Instagram" style="color: var(--primary-purple);">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/51953129261" target="_blank" title="WhatsApp" style="color: var(--primary-purple);">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <p style="opacity: 0.6; font-size: 0.9rem;">© 2026 ZATU - Escuela de Belleza. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
