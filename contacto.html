@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - ZATU Escuela de Belleza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #7C6FFF;
+            --secondary-purple: #5847D9;
+            --dark-bg: #0D0B1E;
+            --dark-card: #1A1633;
+            --white: #FFFFFF;
+            --light-purple: #9B8AFB;
+            --lighter-purple: #C4B8FF;
+            --accent-purple: #6554E0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(13, 11, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(107, 79, 224, 0.2);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: contain;
+            border: 3px solid transparent;
+            background:
+                linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, var(--primary-purple), var(--secondary-purple)) border-box;
+            box-shadow:
+                0 0 20px rgba(124, 111, 255, 0.6),
+                0 0 40px rgba(88, 71, 217, 0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 20px rgba(124, 111, 255, 0.6),
+                    0 0 40px rgba(88, 71, 217, 0.4);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 30px rgba(124, 111, 255, 0.8),
+                    0 0 60px rgba(88, 71, 217, 0.6);
+            }
+        }
+
+        .sparkle {
+            color: var(--light-purple);
+            font-size: 1.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            margin: 3px 0;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .cta-button {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(88, 71, 217, 0.4);
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0D0B1E 0%, #1A1040 50%, #2D1B69 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 111, 255, 0.3) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, 30px) scale(1.1);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Info */
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--dark-card);
+            border-radius: 15px;
+            border: 1px solid rgba(107, 79, 224, 0.2);
+            transition: all 0.3s;
+        }
+
+        .info-item:hover {
+            border-color: var(--secondary-purple);
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            min-width: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-purple);
+        }
+
+        .info-details h3 {
+            font-family: 'Syne', sans-serif;
+            color: var(--light-purple);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .info-details p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Form */
+        .contact-form {
+            background: var(--dark-card);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(107, 79, 224, 0.2);
+        }
+
+        .contact-form h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--light-purple);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: var(--lighter-purple);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(13, 11, 30, 0.5);
+            border: 1px solid rgba(107, 79, 224, 0.3);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-purple);
+            box-shadow: 0 0 0 3px rgba(88, 71, 217, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(88, 71, 217, 0.5);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(107, 79, 224, 0.2);
+        }
+
+        .faq-item h4 {
+            font-family: 'Syne', sans-serif;
+            color: var(--light-purple);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .faq-item p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-card);
+            border-top: 1px solid rgba(107, 79, 224, 0.2);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(13, 11, 30, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                border-left: 1px solid rgba(107, 79, 224, 0.3);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            nav .cta-button {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Ocultar información de contacto en móvil */
+            .contact-info {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="imagenes/logo.png" alt="Zatu Logo" class="logo-image">
+            <span class="sparkle">✨</span>
+            Zatu
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        <a href="contacto.html" class="cta-button">Inscríbete</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="hero-content">
+            <h1>
+                ¡Contáctanos <span class="gradient-text">Ahora!</span>
+            </h1>
+            <p class="hero-subtitle">
+                Estamos aquí para responder todas tus preguntas y ayudarte a comenzar tu carrera
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2 class="section-title">Información de <span class="gradient-text">Contacto</span></h2>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h3>Dirección</h3>
+                        <p>Jr. Huancas N° 750<br>Huancayo, Huancayo, Perú</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                            En el corazón de Huancayo, fácil acceso desde cualquier punto de la ciudad
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-details">
+                        <h3>Teléfono</h3>
+                        <p><strong>953 129 261</strong></p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                            Llámanos o escríbenos por WhatsApp
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-details">
+                        <h3>Horario de Atención</h3>
+                        <p><strong>Lunes a Sábado:</strong> 9:00 AM - 7:00 PM</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                            Domingo: Cerrado
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-details">
+                        <h3>Correo Electrónico</h3>
+                        <p>info@zatuescuela.com</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                            Respuesta en menos de 24 horas
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="info-details">
+                        <h3>WhatsApp</h3>
+                        <p><a href="https://wa.me/51953129261"
+                                style="color: var(--light-purple); text-decoration: none;">
+                                +51 953 129 261
+                            </a></p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                            Respuesta inmediata por chat
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Solicita Información</h3>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre *</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido *</label>
+                            <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="953 129 261">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="curso">Curso de Interés *</label>
+                        <select id="curso" name="curso" required>
+                            <option value="">Selecciona un curso</option>
+                            <option value="manicura">Manicura</option>
+                            <option value="estilismo">Estilismo</option>
+                            <option value="barberia">Barbería</option>
+                            <option value="colorimetria">Colorimetría</option>
+                            <option value="cejas">Cejas y Pestañas</option>
+                            <option value="estetica">Estética Dermatológica</option>
+                            <option value="maquillaje">Maquillaje Profesional</option>
+                            <option value="hidralips">Hidralips & Babylips</option>
+                            <option value="lashista">Lashista Profesional</option>
+                            <option value="varios">Varios cursos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje"
+                            placeholder="Cuéntanos qué te gustaría saber..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Enviar Consulta</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">Preguntas <span class="gradient-text">Frecuentes</span></h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>¿Ofrecen certificación al finalizar?</h4>
+                    <p>Sí, todos nuestros cursos incluyen certificación profesional al completar satisfactoriamente
+                        el programa de estudios.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Tienen horarios flexibles?</h4>
+                    <p>Contamos con diferentes turnos (mañana, tarde y noche) para adaptarnos a tus necesidades
+                        personales y laborales.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Necesito experiencia previa?</h4>
+                    <p>No, nuestros cursos están diseñados tanto para principiantes como para personas que desean
+                        perfeccionar sus habilidades.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Incluyen materiales?</h4>
+                    <p>Proporcionamos algunos materiales básicos. Te informaremos sobre los materiales específicos
+                        que necesitarás al inscribirte.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Ofrecen facilidades de pago?</h4>
+                    <p>Sí, contamos con diferentes opciones de pago y planes de financiamiento. Consulta con nuestro
+                        equipo para más detalles.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>¿Puedo visitar la escuela antes de inscribirme?</h4>
+                    <p>¡Por supuesto! Te invitamos a conocer nuestras instalaciones. Agenda una visita llamándonos o
+                        escribiéndonos por WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <span class="sparkle">✨</span>
+            Zatu
+        </div>
+        <p style="opacity: 0.8; margin: 1rem 0;">Escuela de Belleza - Brilla con Propósito</p>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank" title="Facebook" style="color: var(--primary-purple);">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" title="Instagram" style="color: var(--primary-purple);">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/51953129261" target="_blank" title="WhatsApp" style="color: var(--primary-purple);">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <p style="opacity: 0.6; font-size: 0.9rem;">© 2026 ZATU - Escuela de Belleza. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('¡Gracias por tu consulta! Nos pondremos en contacto contigo muy pronto.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
