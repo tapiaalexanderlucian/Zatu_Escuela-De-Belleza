@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - ZATU Escuela de Belleza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #7C6FFF;
+            --secondary-purple: #5847D9;
+            --dark-bg: #0D0B1E;
+            --dark-card: #1A1633;
+            --white: #FFFFFF;
+            --light-purple: #9B8AFB;
+            --lighter-purple: #C4B8FF;
+            --accent-purple: #6554E0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(13, 11, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(107, 79, 224, 0.2);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: contain;
+            border: 3px solid transparent;
+            background:
+                linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, var(--primary-purple), var(--secondary-purple)) border-box;
+            box-shadow:
+                0 0 20px rgba(124, 111, 255, 0.6),
+                0 0 40px rgba(88, 71, 217, 0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 20px rgba(124, 111, 255, 0.6),
+                    0 0 40px rgba(88, 71, 217, 0.4);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 30px rgba(124, 111, 255, 0.8),
+                    0 0 60px rgba(88, 71, 217, 0.6);
+            }
+        }
+
+        .sparkle {
+            color: var(--light-purple);
+            font-size: 1.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            margin: 3px 0;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .cta-button {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            border: none;
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(88, 71, 217, 0.4);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0D0B1E 0%, #1A1040 50%, #2D1B69 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 111, 255, 0.3) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(30px, 30px) scale(1.1);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple), var(--light-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 5%;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .text-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(107, 79, 224, 0.2);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-purple);
+            box-shadow: 0 10px 30px rgba(124, 111, 255, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .feature-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--dark-card);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-purple);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .feature-list li:hover {
+            transform: translateX(5px);
+            border-color: var(--light-purple);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--primary-purple);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(107, 79, 224, 0.2);
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-purple);
+            box-shadow: 0 15px 40px rgba(124, 111, 255, 0.3);
+        }
+
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .team-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--light-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--dark-card);
+            border-top: 1px solid rgba(107, 79, 224, 0.2);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(13, 11, 30, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.4s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            nav .cta-button {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="imagenes/logo.png" alt="Zatu Logo" class="logo-image">
+            <span class="sparkle">✨</span>
+            Zatu
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        <a href="contacto.html" class="cta-button">Inscríbete</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="hero-content">
+            <h1>
+                <span class="gradient-text">Nuestra Historia</span><br>
+                y Propósito
+            </h1>
+            <p class="hero-subtitle">
+                Más de 5 años formando profesionales de la belleza con excelencia y pasión
+            </p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <!-- Quiénes Somos -->
+        <div class="section">
+            <h2 class="section-title">¿Quiénes <span class="gradient-text">Somos?</span></h2>
+            <div class="content-grid">
+                <div class="text-content">
+                    <p>
+                        <strong>ZATU - Escuela de Belleza</strong> es una institución educativa ubicada en el corazón de
+                        Huancayo, dedicada a formar profesionales altamente calificados en el arte y la ciencia de la
+                        belleza.
+                    </p>
+                    <p>
+                        Desde nuestros inicios en 2019, hemos ayudado a más de 230 estudiantes a alcanzar sus sueños
+                        profesionales, brindándoles las herramientas, conocimientos y experiencia práctica necesaria
+                        para
+                        destacar en la competitiva industria de la belleza.
+                    </p>
+                    <p>
+                        Nuestro compromiso es ofrecer educación de calidad con un enfoque integral que combina técnica,
+                        creatividad y profesionalismo, preparando a nuestros estudiantes para brillar con propósito.
+                    </p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">230+</div>
+                        <div class="stat-label">Estudiantes Graduados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Cursos Especializados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Certificación Profesional</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Años de Experiencia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Misión y Visión -->
+        <div class="section">
+            <h2 class="section-title">Misión y <span class="gradient-text">Visión</span></h2>
+            <div class="content-grid">
+                <div class="text-content">
+                    <h3 style="color: var(--light-purple); font-size: 1.8rem; margin-bottom: 1rem;">
+                        <i class="fas fa-bullseye"></i> Nuestra Misión
+                    </h3>
+                    <p>
+                        Formar profesionales de la belleza con las más altas competencias técnicas y artísticas,
+                        brindando educación de calidad que permita a nuestros estudiantes desarrollar todo su potencial
+                        y alcanzar el éxito en su carrera profesional.
+                    </p>
+                </div>
+                <div class="text-content">
+                    <h3 style="color: var(--light-purple); font-size: 1.8rem; margin-bottom: 1rem;">
+                        <i class="fas fa-eye"></i> Nuestra Visión
+                    </h3>
+                    <p>
+                        Ser reconocidos como la institución líder en formación de profesionales de la belleza en la
+                        región central del Perú, destacando por la excelencia educativa, innovación en nuestros
+                        programas y el éxito profesional de nuestros egresados.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valores -->
+        <div class="section">
+            <h2 class="section-title">Nuestros <span class="gradient-text">Valores</span></h2>
+            <ul class="feature-list">
+                <li>
+                    <span class="feature-icon">💎</span>
+                    <div>
+                        <strong>Excelencia:</strong> Buscamos la excelencia en todo lo que hacemos, desde la enseñanza
+                        hasta el servicio al estudiante.
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">🤝</span>
+                    <div>
+                        <strong>Compromiso:</strong> Estamos comprometidos con el éxito y desarrollo profesional de cada
+                        uno de nuestros estudiantes.
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">✨</span>
+                    <div>
+                        <strong>Innovación:</strong> Actualizamos constantemente nuestros programas con las últimas
+                        tendencias y técnicas del sector.
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">🎯</span>
+                    <div>
+                        <strong>Profesionalismo:</strong> Formamos profesionales íntegros, éticos y altamente
+                        capacitados
+                        para el mercado laboral.
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">💜</span>
+                    <div>
+                        <strong>Pasión:</strong> Transmitimos el amor por el arte de la belleza y el cuidado personal en
+                        cada lección.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Por Qué Elegirnos -->
+        <div class="section">
+            <h2 class="section-title">¿Por Qué <span class="gradient-text">Elegirnos?</span></h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-icon">🎓</div>
+                    <div class="team-name">Docentes Calificados</div>
+                    <p class="team-role">
+                        Profesionales con amplia experiencia en la industria de la belleza
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">🏆</div>
+                    <div class="team-name">Certificación Oficial</div>
+                    <p class="team-role">
+                        Certificados reconocidos que avalen tus conocimientos y habilidades
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">💼</div>
+                    <div class="team-name">Práctica Real</div>
+                    <p class="team-role">
+                        Experiencia práctica con clientes reales desde el inicio de tu formación
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">🔧</div>
+                    <div class="team-name">Equipamiento Moderno</div>
+                    <p class="team-role">
+                        Instalaciones con herramientas y productos de última generación
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">📅</div>
+                    <div class="team-name">Horarios Flexibles</div>
+                    <p class="team-role">
+                        Turnos adaptados a tus necesidades personales y laborales
+                    </p>
+                </div>
+                <div class="team-card">
+                    <div class="team-icon">🌟</div>
+                    <div class="team-name">Seguimiento Personalizado</div>
+                    <p class="team-role">
+                        Atención individualizada para garantizar tu aprendizaje efectivo
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="section">
+            <h2 class="section-title">Nuestra <span class="gradient-text">Ubicación</span></h2>
+            <div class="text-content">
+                <p style="font-size: 1.2rem; text-align: center;">
+                    📍 <strong>Jr. Huancas N° 750, Huancayo, Huancayo, Perú</strong>
+                </p>
+                <p style="text-align: center; margin-top: 1rem;">
+                    Ubicados en el centro de Huancayo, con fácil acceso desde cualquier punto de la ciudad.
+                    Nuestras instalaciones cuentan con aulas amplias, laboratorios equipados y espacios diseñados
+                    para tu comodidad y aprendizaje óptimo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <span class="sparkle">✨</span>
+            Zatu
+        </div>
+        <p style="opacity: 0.8; margin: 1rem 0;">Escuela de Belleza - Brilla con Propósito</p>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank" title="Facebook" style="color: var(--primary-purple);">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" title="Instagram" style="color: var(--primary-purple);">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/51953129261" target="_blank" title="WhatsApp" style="color: var(--primary-purple);">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        <p style="opacity: 0.6; font-size: 0.9rem;">© 2026 ZATU - Escuela de Belleza. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
